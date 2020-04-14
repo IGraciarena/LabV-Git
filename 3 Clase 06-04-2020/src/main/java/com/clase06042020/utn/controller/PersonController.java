@@ -29,9 +29,15 @@ public class PersonController {
     public Person getPersonById(@PathVariable Integer personId ){
         return personService.getPersonById(personId);
     }
+//pattron bulder a cada setter que tnega la clase se retorna asi mismo
 
     @PostMapping("/")
     public void addPerson(@RequestBody @Valid Person person){
+        //personService.add(person);
+        //Student student = new Student();
+        //student.setIGetSalaryForStudent(new IGetSalaryForStudentImp());
+        person = Person.builder().lastname("nombre").name("name").build();
         personService.add(person);
+
     }
 }
