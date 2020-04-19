@@ -3,12 +3,14 @@ package com.company;
 public class BeerProducer extends Thread{
 
     int beerCrafted;
-    boolean available =false;
+    boolean keepGoing =true;
     BeerHouse beerHouse;
+    double price;
 
     public BeerProducer(int beerCrafted,BeerHouse beerHouse){
         this.beerCrafted=beerCrafted;
         this.beerHouse=beerHouse;
+        this.price=beerCrafted*0.5;
     }
 
 //    // this is for the client (beerhouse) in some point would like to choose the amount of galons/litres he want for his pub.
@@ -23,12 +25,8 @@ public class BeerProducer extends Thread{
 
     @Override
     public void run(){
-        // si la cantidad es mayor a 10 el productor espera hasta que sea menor
-       while (true){
+       while (keepGoing){
            beerHouse.refill(this);
        }
-
-
-
     }
 }

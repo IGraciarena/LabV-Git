@@ -6,10 +6,17 @@ public class BeerConsumer extends Thread {
 
     Integer beersThatsGonnaDrink;
     BeerHouse beerHouse;
+    boolean keepGoing=true;
+    double money;
 
     public BeerConsumer (BeerHouse beerHouse){
         beersThatsGonnaDrink = (int) (Math.random() * 10 + 1);
         this.beerHouse=beerHouse;
+        money = (Math.random()*60+1);
+    }
+
+    public double getMoney() {
+        return money;
     }
 
     public int getBeersThatsGonnaDrink() {
@@ -18,7 +25,7 @@ public class BeerConsumer extends Thread {
 
     @Override
     public void  run( ){
-        while (true){
+        while (keepGoing){
             beerHouse.drinkBeer(this);
         }
 

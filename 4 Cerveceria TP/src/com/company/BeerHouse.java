@@ -8,9 +8,11 @@ public class BeerHouse {
     private static int limit = 100;
     int stock;
     private boolean available = false;
+    double beerPrice;
 
-    public BeerHouse(int stock){
+    public BeerHouse(int stock,double beerPrice){
         this.stock=stock;
+        this.beerPrice=beerPrice;
     }
 
     public int getStock() {
@@ -27,12 +29,12 @@ public class BeerHouse {
         }
         if (stock<10){
             stock= stock+(beerProducer.getBeerCrafted());
-            System.out.println("El productor ah entregado :" +beerProducer.getBeerCrafted());
-            System.out.println("Hay un total de :" +stock+" cervezas");
+            System.out.println("The BeerProducer has delivered :" +beerProducer.getBeerCrafted());
+            System.out.println("There is a total of: " +stock+" beers");
 
         }
         available=false;
-        notifyAll();
+//        notifyAll();
 
     }
 
@@ -45,7 +47,17 @@ public class BeerHouse {
             }
         }
         stock = (stock)-(beerConsumer.getBeersThatsGonnaDrink());
-        System.out.println("el consumidor consumio: "+beerConsumer.getBeersThatsGonnaDrink());
+        double cost = beerConsumer.getBeersThatsGonnaDrink()*beerPrice;
+
+        System.out.println("The Client drank: "+beerConsumer.getBeersThatsGonnaDrink());
+        System.out.println("The Client has to pay: "+cost);
+
+        if (cost<=beerConsumer.getMoney()){
+            System.out.println("The Client paid the beer");
+        }else {
+            System.out.println("The Client has left the bar");
+        }
+
         available = true;
         notifyAll();
     }
