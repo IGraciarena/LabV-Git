@@ -34,10 +34,6 @@ public class Person {
     private List<Car> carList;
     */
 
-
-
-
-
     //todo
     //agregar edad y hacer un filter con edad
     //https://programacion.net/articulo/patrones_de_diseno_iii_patrones_de_creacion_builder_1002
